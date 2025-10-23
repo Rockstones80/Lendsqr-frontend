@@ -87,10 +87,12 @@ const UserDetails = () => {
     <div className="user-details">
       {/* Header */}
       <div className="user-header">
-        <Link to="/users" className="back-link">
-          ← Back to Users
-        </Link>
-        <h1>User Details</h1>
+        <div className="header-left">
+          <Link to="/users" className="back-link">
+            ← Back to Users
+          </Link>
+          <h1>User Details</h1>
+        </div>
         <div className="user-actions">
           <button className="blacklist-btn">BLACKLIST USER</button>
           <button className="activate-btn">ACTIVATE USER</button>
@@ -100,34 +102,38 @@ const UserDetails = () => {
       {/* User Summary Card */}
       <div className="user-summary">
         <div className="user-avatar">
-          <img src={user.profile.avatar} alt={user.username} />
+          <div className="avatar-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+                fill="currentColor"
+              />
+              <path
+                d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
         </div>
         <div className="user-info">
           <h2>{user.username}</h2>
           <p className="user-id">{user.id}</p>
         </div>
-        <div className="user-stats">
-          <div className="stat">
-            <span className="stat-label">User's Tier</span>
-            <div className="tier-stars">
-              {[1, 2, 3].map((tier) => (
-                <span
-                  key={tier}
-                  className={`star ${tier <= 1 ? "active" : ""}`}
-                >
-                  ⭐
-                </span>
-              ))}
-            </div>
+        <div className="stat-divider"></div>
+        <div className="stat">
+          <span className="stat-label">User's Tier</span>
+          <div className="tier-stars">
+            {[1, 2, 3].map((tier) => (
+              <span key={tier} className={`star ${tier <= 1 ? "active" : ""}`}>
+                ⭐
+              </span>
+            ))}
           </div>
-          <div className="stat">
-            <span className="stat-label">₦200,000.00</span>
-            <span className="stat-value">Balance</span>
-          </div>
-          <div className="stat">
-            <span className="stat-label">9912345678/Providus Bank</span>
-            <span className="stat-value">Bank Account</span>
-          </div>
+        </div>
+        <div className="stat-divider"></div>
+        <div className="stat">
+          <span className="stat-value">₦200,000.00</span>
+          <span className="stat-label">9912345678/Providus Bank</span>
         </div>
       </div>
 

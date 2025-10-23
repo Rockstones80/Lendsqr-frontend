@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import type { UserStats, User } from "../types";
 import { api } from "../services/api";
 import { formatDate } from "../utils";
+import { Users, UserCheck, DollarSign, PiggyBank } from "lucide-react";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
@@ -60,7 +61,9 @@ const Dashboard = () => {
       {/* Statistics Cards */}
       <div className="stats-grid">
         <div className="stat-card">
-          <div className="stat-icon users">👥</div>
+          <div className="stat-icon users">
+            <Users size={20} />
+          </div>
           <div className="stat-content">
             <h3>USERS</h3>
             <p className="stat-number">{stats?.totalUsers.toLocaleString()}</p>
@@ -68,7 +71,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon active-users">👥</div>
+          <div className="stat-icon active-users">
+            <UserCheck size={20} />
+          </div>
           <div className="stat-content">
             <h3>ACTIVE USERS</h3>
             <p className="stat-number">{stats?.activeUsers.toLocaleString()}</p>
@@ -76,7 +81,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon loans">💰</div>
+          <div className="stat-icon loans">
+            <DollarSign size={20} />
+          </div>
           <div className="stat-content">
             <h3>USERS WITH LOANS</h3>
             <p className="stat-number">
@@ -86,7 +93,9 @@ const Dashboard = () => {
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon savings">🐷</div>
+          <div className="stat-icon savings">
+            <PiggyBank size={20} />
+          </div>
           <div className="stat-content">
             <h3>USERS WITH SAVINGS</h3>
             <p className="stat-number">
@@ -147,30 +156,6 @@ const Dashboard = () => {
               ))}
             </tbody>
           </table>
-        </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="quick-actions">
-        <h2>Quick Actions</h2>
-        <div className="actions-grid">
-          <Link to="/users" className="action-card">
-            <div className="action-icon">👥</div>
-            <h3>Manage Users</h3>
-            <p>View and manage all users</p>
-          </Link>
-
-          <div className="action-card">
-            <div className="action-icon">📊</div>
-            <h3>View Reports</h3>
-            <p>Generate and view reports</p>
-          </div>
-
-          <div className="action-card">
-            <div className="action-icon">⚙️</div>
-            <h3>Settings</h3>
-            <p>Configure system settings</p>
-          </div>
         </div>
       </div>
     </div>

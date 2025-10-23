@@ -1,66 +1,94 @@
-@import '../styles/variables.scss';
-@import '../styles/mixins.scss';
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
 
 .user-details {
   .user-header {
     @include flex-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: $spacing-xl;
-    
+
     @include mobile {
       flex-direction: column;
       align-items: flex-start;
       gap: $spacing-md;
     }
-    
-    .back-link {
-      color: $primary-color;
-      text-decoration: none;
-      font-size: $font-size-sm;
-      font-weight: $font-weight-medium;
-      
-      &:hover {
-        color: darken($primary-color, 10%);
+
+    .header-left {
+      @include flex-column;
+      gap: $spacing-sm;
+
+      .back-link {
+        color: $primary-color;
+        text-decoration: none;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+
+        &:hover {
+          color: darken($primary-color, 10%);
+        }
+      }
+
+      h1 {
+        font-size: $font-size-2xl;
+        font-weight: $font-weight-bold;
+        color: $text-primary;
+        margin: 0;
       }
     }
-    
-    h1 {
-      font-size: $font-size-2xl;
-      font-weight: $font-weight-bold;
-      color: $text-primary;
-      margin: 0;
-    }
-    
+
     .user-actions {
       @include flex-center;
       gap: $spacing-md;
-      
+
       @include mobile {
         width: 100%;
         justify-content: stretch;
       }
-      
+
       .blacklist-btn {
-        @include button-danger;
-        padding: $spacing-sm $spacing-md;
+        background: none;
+        border: 1px solid #e4033b;
+        color: #e4033b;
+        padding: $spacing-sm $spacing-lg;
         font-size: $font-size-xs;
         font-weight: $font-weight-semibold;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        
+        border-radius: $border-radius-md;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+          background-color: #e4033b;
+          color: white;
+        }
+
         @include mobile {
           flex: 1;
         }
       }
-      
+
       .activate-btn {
-        @include button-secondary;
-        padding: $spacing-sm $spacing-md;
+        background: none;
+        border: 1px solid #39cdcc;
+        color: #39cdcc;
+        padding: $spacing-sm $spacing-lg;
         font-size: $font-size-xs;
         font-weight: $font-weight-semibold;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        
+        border-radius: $border-radius-md;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+          background-color: #39cdcc;
+          color: white;
+        }
+
         @include mobile {
           flex: 1;
         }
@@ -72,25 +100,30 @@
 .user-summary {
   @include card-base;
   padding: $spacing-xl;
-  margin-bottom: $spacing-xl;
-  @include flex-between;
+  margin-bottom: 0;
+  display: flex;
   align-items: center;
-  
+  gap: $spacing-lg;
+  border-radius: $border-radius-lg $border-radius-lg 0 0;
+
   @include mobile {
     flex-direction: column;
     gap: $spacing-lg;
     text-align: center;
   }
-  
+
   .user-avatar {
-    img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
+    .avatar-placeholder {
+      @include flex-center;
+      color: #1e40af;
+
+      svg {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
-  
+
   .user-info {
     h2 {
       font-size: $font-size-xl;
@@ -98,51 +131,54 @@
       color: $text-primary;
       margin: 0 0 $spacing-xs 0;
     }
-    
+
     .user-id {
       color: $text-secondary;
       font-size: $font-size-sm;
       margin: 0;
     }
   }
-  
-  .user-stats {
-    @include flex-center;
-    gap: $spacing-xl;
-    
+
+  .stat-divider {
+    width: 1px;
+    height: 80px;
+    background-color: #e5e7eb;
+
     @include mobile {
-      flex-direction: column;
-      gap: $spacing-md;
+      display: none;
     }
-    
-    .stat {
-      @include flex-column;
-      align-items: center;
-      text-align: center;
-      
-      .stat-label {
-        font-size: $font-size-sm;
-        font-weight: $font-weight-medium;
-        color: $text-primary;
-        margin-bottom: $spacing-xs;
-      }
-      
-      .stat-value {
-        font-size: $font-size-xs;
-        color: $text-secondary;
-      }
-      
-      .tier-stars {
-        @include flex-center;
-        gap: $spacing-xs;
-        
-        .star {
-          font-size: $font-size-sm;
-          opacity: 0.3;
-          
-          &.active {
-            opacity: 1;
-          }
+  }
+
+  .stat {
+    @include flex-column;
+    align-items: center;
+    text-align: center;
+    gap: $spacing-xs;
+
+    .stat-label {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      color: $text-secondary;
+    }
+
+    .stat-value {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+    }
+
+    .tier-stars {
+      @include flex-center;
+      gap: $spacing-xs;
+
+      .star {
+        font-size: $font-size-lg;
+        opacity: 0.3;
+        color: #ffd700;
+
+        &.active {
+          opacity: 1;
+          color: #ffd700;
         }
       }
     }
@@ -151,19 +187,21 @@
 
 .tabs {
   @include flex-center;
-  gap: 0;
+  gap: 72px;
   margin-bottom: $spacing-xl;
-  border-bottom: 1px solid $border-light;
-  
+  background-color: $white;
+  border-radius: 0 0 $border-radius-lg $border-radius-lg;
+  padding: 0;
+
   @include mobile {
     overflow-x: auto;
     justify-content: flex-start;
   }
-  
+
   .tab {
     background: none;
     border: none;
-    padding: $spacing-md $spacing-lg;
+    padding: $spacing-sm $spacing-xl;
     font-size: $font-size-sm;
     font-weight: $font-weight-medium;
     color: $text-secondary;
@@ -171,14 +209,16 @@
     border-bottom: 2px solid transparent;
     transition: all $transition-fast;
     white-space: nowrap;
-    
+    position: relative;
+
     &:hover {
-      color: $primary-color;
+      color: #39cdcc;
     }
-    
+
     &.active {
-      color: $primary-color;
-      border-bottom-color: $primary-color;
+      color: #39cdcc;
+      border-bottom-color: #39cdcc;
+      font-weight: $font-weight-semibold;
     }
   }
 }
@@ -186,16 +226,20 @@
 .tab-content {
   @include card-base;
   padding: $spacing-xl;
+  border-radius: 0 0 $border-radius-lg $border-radius-lg;
+  margin-top: -1px;
+  border-top: none;
+  margin-bottom: $spacing-xl;
 }
 
 .general-details {
   .detail-section {
     margin-bottom: $spacing-xxl;
-    
+
     &:last-child {
       margin-bottom: 0;
     }
-    
+
     h3 {
       font-size: $font-size-lg;
       font-weight: $font-weight-semibold;
@@ -205,21 +249,21 @@
       border-bottom: 1px solid $border-light;
     }
   }
-  
+
   .detail-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: $spacing-lg;
-    
+
     @include mobile {
       grid-template-columns: 1fr;
       gap: $spacing-md;
     }
   }
-  
+
   .detail-item {
     @include flex-column;
-    
+
     .detail-label {
       font-size: $font-size-xs;
       font-weight: $font-weight-medium;
@@ -228,20 +272,20 @@
       letter-spacing: 0.5px;
       margin-bottom: $spacing-xs;
     }
-    
+
     .detail-value {
       font-size: $font-size-sm;
       color: $text-primary;
       font-weight: $font-weight-medium;
     }
   }
-  
+
   .guarantor-list {
     .guarantor-item {
       @include card-base;
       padding: $spacing-lg;
       margin-bottom: $spacing-md;
-      
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -257,7 +301,7 @@
   text-align: center;
   padding: $spacing-xxl;
   color: $text-secondary;
-  
+
   p {
     font-size: $font-size-base;
     margin: 0;
@@ -267,18 +311,18 @@
 .error {
   text-align: center;
   padding: $spacing-xxl;
-  
+
   h2 {
     font-size: $font-size-xl;
     color: $text-primary;
     margin-bottom: $spacing-md;
   }
-  
+
   p {
     color: $text-secondary;
     margin-bottom: $spacing-lg;
   }
-  
+
   .back-btn {
     @include button-primary;
     padding: $spacing-sm $spacing-lg;

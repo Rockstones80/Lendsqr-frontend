@@ -129,7 +129,7 @@
     color: #545f7d;
 
     &::placeholder {
-      color: #545f7d;
+      color: #e5e5e5;
       font-size: 14px;
     }
 
@@ -189,7 +189,7 @@
   }
 
   .form-actions {
-    margin-bottom: $spacing-lg;
+    margin-bottom: $spacing-md;
     text-align: left;
 
     .forgot-password {
