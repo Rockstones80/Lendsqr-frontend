@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Lendsqr Frontend Assessment
 
 A React + TypeScript + SCSS application built for the Lendsqr frontend engineering assessment. This application demonstrates modern React development practices with comprehensive user management features.
@@ -106,3 +107,6 @@ npm run build
 ## 📄 License
 
 This project is created for the Lendsqr frontend engineering assessment.
+=======
+# Lendsqr-frontend
+>>>>>>> 3b6890dcbc33177f934554a584f13f44464ada9b

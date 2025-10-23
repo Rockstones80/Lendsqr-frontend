@@ -1,5 +1,6 @@
-import { render, RenderOptions } from "@testing-library/react";
-import { ReactElement } from "react";
+import { render } from "@testing-library/react";
+import type { RenderOptions } from "@testing-library/react";
+import type { ReactElement } from "react";
 
 // Custom render function that includes providers if needed
 const customRender = (
@@ -7,8 +8,24 @@ const customRender = (
   options?: Omit<RenderOptions, "wrapper">
 ) => render(ui, { ...options });
 
-// Re-export everything
-export * from "@testing-library/react";
+// Re-export specific functions
+export {
+  render as originalRender,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+  cleanup,
+  getByText,
+  getByRole,
+  getByTestId,
+  queryByText,
+  queryByRole,
+  queryByTestId,
+  findByText,
+  findByRole,
+  findByTestId,
+} from "@testing-library/react";
 export { customRender as render };
 
 // Common test utilities

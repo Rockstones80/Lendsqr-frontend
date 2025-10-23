@@ -1,0 +1,232 @@
+@import "../styles/variables.scss";
+@import "../styles/mixins.scss";
+
+.login-page {
+  min-height: 100vh;
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  width: 100%;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.login-left {
+  background-color: #f9fafbf0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-xxl;
+  position: relative;
+  overflow: hidden;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.login-logo {
+  position: absolute;
+  top: $spacing-xl;
+  left: $spacing-xl * 3;
+  @include flex-center;
+  gap: $spacing-sm;
+  z-index: 1;
+
+  .union-logo-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+  }
+
+  .logo-text {
+    font-size: 34px;
+    font-weight: 700;
+    color: $primary-color;
+  }
+}
+
+.login-illustration {
+  @include flex-center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pablo-illustration {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-width: 550px;
+  max-height: 550px;
+  filter: hue-rotate(0deg) saturate(1.1) brightness(1.05);
+  mix-blend-mode: multiply;
+}
+
+.login-right {
+  @include flex-center;
+  padding: $spacing-xxl;
+  background-color: $white;
+
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-header {
+  margin-bottom: $spacing-xxl;
+  text-align: left;
+
+  h1 {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    color: $text-primary;
+    margin-bottom: $spacing-sm;
+
+    @include mobile {
+      font-size: $font-size-2xl;
+    }
+  }
+
+  p {
+    font-size: $font-size-base;
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+.login-form {
+  .form-group {
+    margin-bottom: $spacing-lg;
+
+    label {
+      display: none;
+    }
+  }
+
+  .form-input {
+    @include input-base;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    padding: 15px 20px;
+    font-size: 14px;
+    color: #545f7d;
+
+    &::placeholder {
+      color: #545f7d;
+      font-size: 14px;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #39cdcc;
+      box-shadow: 0 0 0 1px #39cdcc;
+    }
+  }
+
+  .password-input-container {
+    position: relative;
+
+    .password-toggle {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #39cdcc;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &:hover {
+        color: #39cdcc;
+      }
+    }
+  }
+
+  .error {
+    border-color: $danger-color;
+
+    &:focus {
+      border-color: $danger-color;
+      box-shadow: 0 0 0 3px rgba($danger-color, 0.1);
+    }
+  }
+
+  .error-message {
+    display: block;
+    color: $danger-color;
+    font-size: $font-size-xs;
+    margin-top: $spacing-xs;
+
+    &.general-error {
+      background-color: rgba($danger-color, 0.1);
+      border: 1px solid rgba($danger-color, 0.2);
+      border-radius: $border-radius-md;
+      padding: $spacing-sm;
+      margin-bottom: $spacing-md;
+      text-align: center;
+    }
+  }
+
+  .form-actions {
+    margin-bottom: $spacing-lg;
+    text-align: left;
+
+    .forgot-password {
+      color: #39cdcc;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &:hover {
+        color: #39cdcc;
+      }
+    }
+  }
+
+  .login-button {
+    background-color: #39cdcc;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #39cdcc;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}

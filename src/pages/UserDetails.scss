@@ -1,0 +1,288 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.user-details {
+  .user-header {
+    @include flex-between;
+    align-items: center;
+    margin-bottom: $spacing-xl;
+    
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $spacing-md;
+    }
+    
+    .back-link {
+      color: $primary-color;
+      text-decoration: none;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      
+      &:hover {
+        color: darken($primary-color, 10%);
+      }
+    }
+    
+    h1 {
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      margin: 0;
+    }
+    
+    .user-actions {
+      @include flex-center;
+      gap: $spacing-md;
+      
+      @include mobile {
+        width: 100%;
+        justify-content: stretch;
+      }
+      
+      .blacklist-btn {
+        @include button-danger;
+        padding: $spacing-sm $spacing-md;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        
+        @include mobile {
+          flex: 1;
+        }
+      }
+      
+      .activate-btn {
+        @include button-secondary;
+        padding: $spacing-sm $spacing-md;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        
+        @include mobile {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+.user-summary {
+  @include card-base;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-xl;
+  @include flex-between;
+  align-items: center;
+  
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-lg;
+    text-align: center;
+  }
+  
+  .user-avatar {
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+  
+  .user-info {
+    h2 {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $text-primary;
+      margin: 0 0 $spacing-xs 0;
+    }
+    
+    .user-id {
+      color: $text-secondary;
+      font-size: $font-size-sm;
+      margin: 0;
+    }
+  }
+  
+  .user-stats {
+    @include flex-center;
+    gap: $spacing-xl;
+    
+    @include mobile {
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+    
+    .stat {
+      @include flex-column;
+      align-items: center;
+      text-align: center;
+      
+      .stat-label {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $text-primary;
+        margin-bottom: $spacing-xs;
+      }
+      
+      .stat-value {
+        font-size: $font-size-xs;
+        color: $text-secondary;
+      }
+      
+      .tier-stars {
+        @include flex-center;
+        gap: $spacing-xs;
+        
+        .star {
+          font-size: $font-size-sm;
+          opacity: 0.3;
+          
+          &.active {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tabs {
+  @include flex-center;
+  gap: 0;
+  margin-bottom: $spacing-xl;
+  border-bottom: 1px solid $border-light;
+  
+  @include mobile {
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  
+  .tab {
+    background: none;
+    border: none;
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $text-secondary;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all $transition-fast;
+    white-space: nowrap;
+    
+    &:hover {
+      color: $primary-color;
+    }
+    
+    &.active {
+      color: $primary-color;
+      border-bottom-color: $primary-color;
+    }
+  }
+}
+
+.tab-content {
+  @include card-base;
+  padding: $spacing-xl;
+}
+
+.general-details {
+  .detail-section {
+    margin-bottom: $spacing-xxl;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    h3 {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $text-primary;
+      margin-bottom: $spacing-lg;
+      padding-bottom: $spacing-sm;
+      border-bottom: 1px solid $border-light;
+    }
+  }
+  
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-lg;
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+  }
+  
+  .detail-item {
+    @include flex-column;
+    
+    .detail-label {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-medium;
+      color: $text-secondary;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: $spacing-xs;
+    }
+    
+    .detail-value {
+      font-size: $font-size-sm;
+      color: $text-primary;
+      font-weight: $font-weight-medium;
+    }
+  }
+  
+  .guarantor-list {
+    .guarantor-item {
+      @include card-base;
+      padding: $spacing-lg;
+      margin-bottom: $spacing-md;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.documents-tab,
+.bank-tab,
+.loans-tab,
+.savings-tab,
+.app-tab {
+  text-align: center;
+  padding: $spacing-xxl;
+  color: $text-secondary;
+  
+  p {
+    font-size: $font-size-base;
+    margin: 0;
+  }
+}
+
+.error {
+  text-align: center;
+  padding: $spacing-xxl;
+  
+  h2 {
+    font-size: $font-size-xl;
+    color: $text-primary;
+    margin-bottom: $spacing-md;
+  }
+  
+  p {
+    color: $text-secondary;
+    margin-bottom: $spacing-lg;
+  }
+  
+  .back-btn {
+    @include button-primary;
+    padding: $spacing-sm $spacing-lg;
+    text-decoration: none;
+    display: inline-block;
+  }
+}
