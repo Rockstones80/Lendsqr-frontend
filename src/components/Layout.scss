@@ -26,7 +26,7 @@
   top: 70px;
   z-index: 1000;
   transition: transform $transition-normal;
-  color: #213F7D;
+  color: #213f7d;
 
   @include mobile {
     transform: translateX(-100%);
@@ -221,6 +221,12 @@
   @include flex-center;
   gap: 220px;
 
+  @include mobile {
+    gap: $spacing-md;
+    flex: 1;
+    justify-content: space-between;
+  }
+
   .logo {
     @include flex-center;
     gap: $spacing-sm;
@@ -235,6 +241,10 @@
       font-size: $font-size-3xl;
       font-weight: $font-weight-bold;
       color: $primary-color;
+
+      @include mobile {
+        font-size: $font-size-2xl;
+      }
     }
   }
 }
@@ -260,7 +270,7 @@
   overflow: hidden;
 
   @include mobile {
-    min-width: 200px;
+    display: none;
   }
 }
 
@@ -298,6 +308,11 @@
 .header-right {
   @include flex-center;
   gap: $spacing-lg;
+
+  @include mobile {
+    gap: $spacing-sm;
+    display: none;
+  }
 }
 
 .header-link {
@@ -309,6 +324,10 @@
   &:hover {
     color: $primary-color;
   }
+
+  @include mobile {
+    display: none;
+  }
 }
 
 .notification-btn {
@@ -318,6 +337,10 @@
   cursor: pointer;
   font-size: $font-size-lg;
   color: $text-secondary;
+
+  @include mobile {
+    display: none;
+  }
 }
 
 .notification-badge {
@@ -343,6 +366,10 @@
 
   &:hover {
     background-color: $bg-light;
+  }
+
+  @include mobile {
+    display: none;
   }
 }
 

@@ -30,10 +30,15 @@
   gap: $spacing-lg;
   margin-bottom: $spacing-xxl;
 
-  @include mobile {
-    grid-template-columns: 1fr;
-    gap: $spacing-md;
-  }
+    @include mobile {
+      // display: flex;
+      // flex-direction: row;
+      // gap: $spacing-md;
+      display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      overflow-x: auto;
+      padding-bottom: $spacing-sm;
+    }
 }
 
 .stat-card {
@@ -100,6 +105,12 @@
         font-size: $font-size-xl;
       }
     }
+  }
+
+  @include mobile {
+    flex: 0 0 280px;
+    min-width: 280px;
+    width: 280px;
   }
 }
 
