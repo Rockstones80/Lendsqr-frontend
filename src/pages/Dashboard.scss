@@ -1,5 +1,6 @@
-@import "../styles/variables.scss";
-@import "../styles/mixins.scss";
+@use "sass:color";
+@use "../styles/variables.scss" as *;
+@use "../styles/mixins.scss" as *;
 
 .dashboard {
   .dashboard-header {
@@ -142,7 +143,7 @@
       font-weight: $font-weight-medium;
 
       &:hover {
-        color: darken($primary-color, 10%);
+        color: color.adjust($primary-color, $lightness: -10%);
       }
     }
   }
@@ -259,7 +260,7 @@
   font-weight: $font-weight-medium;
 
   &:hover {
-    color: darken($primary-color, 10%);
+    color: color.adjust($primary-color, $lightness: -10%);
   }
 
   @include mobile {

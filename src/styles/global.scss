@@ -1,5 +1,6 @@
-@import "./variables.scss";
-@import "./mixins.scss";
+@use "sass:color";
+@use "./variables.scss" as *;
+@use "./mixins.scss" as *;
 
 // Reset and base styles
 * {
@@ -82,7 +83,7 @@ a {
   transition: color $transition-fast;
 
   &:hover {
-    color: darken($primary-color, 10%);
+    color: color.adjust($primary-color, $lightness: -10%);
   }
 }
 
