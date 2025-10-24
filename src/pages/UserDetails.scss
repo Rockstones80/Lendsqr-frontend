@@ -2,6 +2,13 @@
 @import "../styles/mixins.scss";
 
 .user-details {
+  // Mobile container with fixed width and scrollable content
+  @include mobile {
+    width: 100vw;
+    max-width: 90vw;
+    overflow-x: hidden;
+    position: relative;
+  }
   .user-header {
     @include flex-between;
     align-items: flex-start;
@@ -110,6 +117,8 @@
     flex-direction: column;
     gap: $spacing-lg;
     text-align: center;
+    padding: $spacing-md;
+    margin: 0;
   }
 
   .user-avatar {
@@ -196,6 +205,15 @@
   @include mobile {
     overflow-x: auto;
     justify-content: flex-start;
+    gap: $spacing-lg;
+    padding: 0 $spacing-sm;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .tab {
@@ -220,6 +238,12 @@
       border-bottom-color: #39cdcc;
       font-weight: $font-weight-semibold;
     }
+
+    @include mobile {
+      padding: $spacing-sm $spacing-md;
+      font-size: $font-size-xs;
+      min-width: max-content;
+    }
   }
 }
 
@@ -230,6 +254,13 @@
   margin-top: -1px;
   border-top: none;
   margin-bottom: $spacing-xl;
+
+  @include mobile {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: $spacing-md;
+  }
 }
 
 .general-details {
@@ -247,6 +278,15 @@
       margin-bottom: $spacing-lg;
       padding-bottom: $spacing-sm;
       border-bottom: 1px solid $border-light;
+
+      @include mobile {
+        font-size: $font-size-base;
+        margin-bottom: $spacing-md;
+      }
+    }
+
+    @include mobile {
+      margin-bottom: $spacing-lg;
     }
   }
 
@@ -278,6 +318,17 @@
       color: $text-primary;
       font-weight: $font-weight-medium;
     }
+
+    @include mobile {
+      .detail-label {
+        font-size: 0.625rem;
+      }
+
+      .detail-value {
+        font-size: $font-size-xs;
+        word-break: break-word;
+      }
+    }
   }
 
   .guarantor-list {
@@ -288,6 +339,11 @@
 
       &:last-child {
         margin-bottom: 0;
+      }
+
+      @include mobile {
+        padding: $spacing-md;
+        margin-bottom: $spacing-sm;
       }
     }
   }
@@ -305,6 +361,14 @@
   p {
     font-size: $font-size-base;
     margin: 0;
+  }
+
+  @include mobile {
+    padding: $spacing-lg;
+
+    p {
+      font-size: $font-size-sm;
+    }
   }
 }
 
