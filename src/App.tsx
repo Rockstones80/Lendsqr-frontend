@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Login from "../src/pages/Login";
@@ -14,9 +15,10 @@ import type { AuthUser } from "./types";
 import { storage } from "./utils";
 import "./styles/global.scss";
 
-function App() {
+function AppContent() {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check for stored user data
@@ -35,6 +37,7 @@ function App() {
   const handleLogout = () => {
     setUser(null);
     storage.remove("user");
+    navigate("/");
   };
 
   if (loading) {
@@ -46,39 +49,45 @@ function App() {
   }
 
   return (
+    <Routes>
+      <Route
+        path="/login"
+        element={
+          user ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <Login onLogin={handleLogin} />
+          )
+        }
+      />
+      <Route
+        path="/*"
+        element={
+          user ? (
+            <Layout user={user} onLogout={handleLogout}>
+              <Routes>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/users" element={<Users />} />
+                <Route path="/users/:id" element={<UserDetails />} />
+                <Route
+                  path="/"
+                  element={<Navigate to="/dashboard" replace />}
+                />
+              </Routes>
+            </Layout>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+    </Routes>
+  );
+}
+
+function App() {
+  return (
     <Router>
-      <Routes>
-        <Route
-          path="/login"
-          element={
-            user ? (
-              <Navigate to="/dashboard" replace />
-            ) : (
-              <Login onLogin={handleLogin} />
-            )
-          }
-        />
-        <Route
-          path="/*"
-          element={
-            user ? (
-              <Layout user={user} onLogout={handleLogout}>
-                <Routes>
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/users" element={<Users />} />
-                  <Route path="/users/:id" element={<UserDetails />} />
-                  <Route
-                    path="/"
-                    element={<Navigate to="/dashboard" replace />}
-                  />
-                </Routes>
-              </Layout>
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-      </Routes>
+      <AppContent />
     </Router>
   );
 }

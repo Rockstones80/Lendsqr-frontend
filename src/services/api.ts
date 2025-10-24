@@ -221,14 +221,14 @@ export const api = {
   > => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // Simple mock authentication
-    if (email === "admin@lendsqr.com" && password === "password") {
+    // Simple mock authentication - accept any email and password
+    if (email && password) {
       return {
         data: {
           user: {
             id: "1",
-            email: "admin@lendsqr.com",
-            name: "Admin User",
+            email: email,
+            name: email.split("@")[0],
             avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
           },
           token: "mock-jwt-token",
