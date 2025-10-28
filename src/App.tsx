@@ -37,7 +37,7 @@ function AppContent() {
   const handleLogout = () => {
     setUser(null);
     storage.remove("user");
-    navigate("/");
+    navigate("/login");
   };
 
   if (loading) {

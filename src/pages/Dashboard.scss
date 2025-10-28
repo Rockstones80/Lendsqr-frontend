@@ -3,6 +3,9 @@
 @use "../styles/mixins.scss" as *;
 
 .dashboard {
+  padding-left: 34px;
+  padding-right: 34px;
+
   .dashboard-header {
     margin-bottom: $spacing-xl;
 
